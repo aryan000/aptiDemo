@@ -17,7 +17,7 @@ public class LoginController {
   }
 
 
-  @RequestMapping("/main")
+  @RequestMapping("/login")
   public ModelAndView start(){
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("index");
