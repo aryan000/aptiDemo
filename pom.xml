@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.aptitude.aptigame</groupId>
+	<groupId>com.aptigame</groupId>
 	<artifactId>AptiGame</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -11,6 +11,7 @@
 	<name>AptiGame</name>
 	<description>Demo project for Spring Boot for Aptitude Game Application </description>
 
+  <!--Required for spring boot to run-->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -19,8 +20,7 @@
 	</parent>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <start-class>com.aptitude.aptigame.AptiGame.AptiGameApplication</start-class>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -41,6 +41,7 @@
 			<version>3.1.0</version>
 		</dependency>
 		<dependency>
+
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
 			<version>2.3.1</version>
@@ -60,13 +61,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>Aptitude Game </finalName>
-		<pluginManagement>
+    <pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
@@ -83,16 +82,36 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.4</version>
+					<artifactId>maven-jar-plugin</artifactId>
 					<configuration>
-						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>Apti Game Sample</warName>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-					</configuration>
+            <archive>
+              <manifest>
+                <addClasspath>true</addClasspath>
+                <classpathPrefix>lib/</classpathPrefix>
+                <mainClass>com.aptitude.aptigame.AptiGame.AptiGameApplication</mainClass>
+              </manifest>
+
+            </archive>
+
+          </configuration>
 				</plugin>
+
+
+
+        <!--Plugin for Heroku to Run-->
+        <plugin>
+          <groupId>com.heroku.sdk</groupId>
+          <artifactId>heroku-maven-plugin</artifactId>
+          <version>2.0.6</version>
+          <configuration>
+            <processTypes>
+              <web>java $JAVA_OPTS -cp target/classes:target/dependency/* AptiGameApplication</web>
+            </processTypes>
+          </configuration>
+        </plugin>
+
 			</plugins>
-		</pluginManagement>
+    </pluginManagement>
 	</build>
 
 
