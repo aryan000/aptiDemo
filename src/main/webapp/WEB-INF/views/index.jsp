@@ -34,7 +34,10 @@
 					<li>
 						<a href="contact">Contact</a>
 					</li>
-				</ul>
+					<li>
+          	<h1> Hello ${username} </h1>
+          </li>
+				</
 			</div>
 		</div>
 		<div id="body" class="home">

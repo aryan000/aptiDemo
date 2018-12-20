@@ -10,10 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-  @RequestMapping({"/", "index"})
+  @RequestMapping("index")
   @ResponseBody
   public ModelAndView execute() {
     return new ModelAndView("index");
+  }
+
+  @RequestMapping("/")
+  @ResponseBody
+  public ModelAndView login() {
+    return new ModelAndView("login");
   }
 
   @RequestMapping({"/blog"})
