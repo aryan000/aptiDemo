@@ -16,11 +16,11 @@ public class HomeController {
     return new ModelAndView("index");
   }
 
-  @RequestMapping("/")
-  @ResponseBody
-  public ModelAndView login() {
-    return new ModelAndView("login");
-  }
+//  @RequestMapping({"/","login"})
+//  @ResponseBody
+//  public ModelAndView login() {
+//    return new ModelAndView("login/login");
+//  }
 
   @RequestMapping({"/blog"})
   @ResponseBody

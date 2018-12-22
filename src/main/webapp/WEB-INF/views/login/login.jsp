@@ -1,11 +1,17 @@
-<!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Responsive Static Login Form HTML5 Template | DesignMaz</title>
+    <title>Login to AptiQ</title>
     <!-- Custom Theme files -->
     <link href="/resources/css/login-style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="/resources/css/materialize.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+
+    <style>
+      body {
+        background-color: #16214d !important;
+      }
+    </style>
+
     <!-- Custom Theme files -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,7 +20,7 @@
     <!--script-->
     <script src="/resources/js/jquery.min.js"></script>
     <script src="/resources/js/easyResponsiveTabs.js" type="text/javascript"></script>
-    <script src="/resources/js/materialize.js" type="text/javascript"></script>
+    <script src="/resources/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $('#horizontalTab').easyResponsiveTabs({
@@ -22,11 +28,24 @@
             width: 'auto', //auto or any width like 600px
             fit: true // 100% fit in a container
         });
-    });
+
+            });
     </script>
+    <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 </head>
 
 <body>
+     <c:if test = "${not empty showWarningMessage}">
+         <div class="container-fluid">
+           <div class="row justify-content-md-center">
+             <div class="col-sm-6 mt-5">
+                 <div class="alert alert-warning " id="warn-alert">
+                    <strong>Warning!</strong> <div id="warm-message" > ${warn_message} </div>
+                 </div>
+             </div>
+           </div>
+         </div>
+     </c:if>
     <div class="head">
         <div class="logo">
             <div class="logo-top">
@@ -34,9 +53,9 @@
             </div>
             <div class="logo-bottom">
                 <section class="sky-form">
-                    <label class="radio"><input type="radio" name="radio" checked=""><i></i>Ut mattis mattis bibendum</label>
-                    <label class="radio"><input type="radio" name="radio"><i></i>Nullam rutrum sagittis interdum</label>
-                    <label class="radio"><input type="radio" name="radio"><i></i>Nam cursus eros sed elit</label>
+                    <label class="radio"><input type="radio" name="radio" checked=""><i></i>Test Your IQ</label>
+                    <label class="radio"><input type="radio" name="radio"><i></i>Participate in Contexts</label>
+                    <label class="radio"><input type="radio" name="radio"><i></i>Evaluate Yourself</label>
                 </section>
             </div>
         </div>
@@ -51,7 +70,7 @@
                     <div class="resp-tabs-container">
                         <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
                             <div class="login-top">
-                                <form action="login" method="post">
+                                <form id="attempt_login" action="login" method="post">
                                     <input type="text" class="email" placeholder="Email" name="userEmail" required="" />
                                     <input type="password" class="password" placeholder="Password"  name="password" required="" />
                                 <div class="login-bottom login-bottom1">
@@ -73,18 +92,19 @@
                         </div>
                         <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
                             <div class="login-top">
-                                <form action="signUp" method="post">
+                                <form id="attempt_signUp" action="signUp" method="post">
                                     <input type="text" class="name active" name="username" placeholder="Your Name" required="" />
                                     <input type="text" class="email" name="userEmail" placeholder="Email" required="" />
                                     <input type="password" class="password" name="password" placeholder="Password" required="" />
-
+                                     <input type="text" class="text" placeholder="First Name"  name="firstName" required="" />
+                                     <input type="text" class="text" placeholder="Last Name"  name="lastName" required="" />
                                 <div class="login-bottom">
                                     <div class="submit">
                                         <input type="submit" value="SIGN UP" />
                                     </div>
                                     <ul>
                                         <li>
-                                            <p>Or login with</p>
+                                            <p>Or Sign Up with</p>
                                         </li>
                                         <li><a href="#"><span class="fb"></span></a></li>
                                         <li><a href="#"><span class="twit"></span></a></li>
@@ -111,9 +131,6 @@
             </li>
             <div class="clear"></div>
         </ul>
-    </div>
-    <div style="text-align:center; margin-top:10px;">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8011246932591811" data-ad-slot="9844648019" data-ad-format="auto"></ins>
     </div>
 </body>
 
