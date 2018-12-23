@@ -3,9 +3,11 @@ package com.aptitude.aptigame.AptiGame.controller;
 import com.aptitude.aptigame.AptiGame.model.SavedUser;
 import com.aptitude.aptigame.AptiGame.model.User;
 import com.aptitude.aptigame.AptiGame.service.UserService;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,8 @@ public class LoginController {
       @RequestParam(value = "password", required = true) String password,
       HttpServletRequest request) {
 
+    byte[] messageBytes = password.getBytes(StandardCharsets.UTF_8);
+    String secretKey = Base64.encodeBase64String(messageBytes);
     User user = userService.findByUserEmailAndSecretKey(userEmail, password);
 
     ModelAndView modelAndView = new ModelAndView();
@@ -64,10 +68,11 @@ public class LoginController {
       @RequestParam(value = "lastName", required = true) String lastName,
 
       HttpServletRequest request) {
-
+    byte[] messageBytes = password.getBytes(StandardCharsets.UTF_8);
+    String secretKey = Base64.encodeBase64String(messageBytes);
     User createdUser = userService.createUser(
         User.builder().userEmail(userEmail).firstName(firstName).lastName(lastName)
-            .userName(username).secretKey(password).build());
+            .userName(username).secretKey(secretKey).build());
 
     if (createdUser == null) {
       ModelAndView modelAndView = new ModelAndView("login/login");

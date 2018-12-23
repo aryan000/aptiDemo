@@ -39,8 +39,11 @@
          <div class="container-fluid">
            <div class="row justify-content-md-center">
              <div class="col-sm-6 mt-5">
-                 <div class="alert alert-warning " id="warn-alert">
-                    <strong>Warning!</strong> <div id="warm-message" > ${warn_message} </div>
+                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                   <strong>Warning!</strong> ${warn_message}
+                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                   </button>
                  </div>
              </div>
            </div>
@@ -125,11 +128,12 @@
         <ul>
             <li>
                 <p>Don't have an <a href="#">account?</a></p>
-            </li><span>/</span>
+            </li>
+            <li> <span>/</span> </li>
             <li>
                 <p>Forgot <a href="#">password?</a></p>
             </li>
-            <div class="clear"></div>
+
         </ul>
     </div>
 </body>

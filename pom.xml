@@ -120,7 +120,8 @@
           <artifactId>spring-boot-maven-plugin</artifactId>
         </plugin>
 
-        <!--Plugin for Heroku to Run-->
+        <!--Plugin for Heroku to Run using war-->
+        <!--war command to run is : mvn clean heroku:deploy-war and packaging should be war-->
         <plugin>
           <groupId>com.heroku.sdk</groupId>
           <artifactId>heroku-maven-plugin</artifactId>

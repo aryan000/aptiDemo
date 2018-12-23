@@ -1,5 +1,6 @@
 package com.aptitude.aptigame.AptiGame.service;
 
+import com.aptitude.aptigame.AptiGame.InvalidUserException;
 import com.aptitude.aptigame.AptiGame.database.UserRepository;
 import com.aptitude.aptigame.AptiGame.model.User;
 import java.util.List;
@@ -45,6 +46,20 @@ public class UserService {
   public void deleteUser(User user) {
     log.info("Deleting User : {}", user);
     userRepository.delete(user);
+  }
+
+  @Transactional
+  public boolean deleteUser(String email) throws InvalidUserException {
+
+    Optional<User> responseUser = getUserByemail(email);
+
+    if (responseUser.isPresent()) {
+      userRepository.delete(responseUser.get());
+      return true;
+    } else {
+      throw new InvalidUserException("No User with this email exists");
+    }
+
   }
 
   @Transactional
